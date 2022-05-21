@@ -2,11 +2,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import shapely
 import shapely.geometry
 from shapely.geometry import Point
+import gdal
 import fiona
 import pyproj
 import geopandas as gpd
+import descartes
 import glob
 import rasterio
 from rasterio.plot import show
@@ -26,6 +29,14 @@ print(gdf)
 
 #Write GeoDataFrame to shapefile
 gdf.to_file("Data\Sampling_Points.shp", encoding="utf-8")
-'''Write GeoDataFrame to shapefile with geopandas .to_file method'''
+'''Write GeoDataFrame to shapefile with geopandas .to_file method,
+define encoding method'''
 
+#Load habitat map polygon shapefile
+Habitat_map = gpd.read_file("Data\Ards_Map.shp")
+print(Habitat_map)
+Habitat_map.plot(column="Habitat", cmap='Pastel2', legend=True);
+#plt.show()
 
+#Read raster chart file
+#chart = rasterio.open("Data\1121.tif")
