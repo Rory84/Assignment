@@ -1,3 +1,7 @@
+#Set filepath of Proj.lib
+import os
+
+os.environ['PROJ_LIB'] = r"C:\Users\Annika\anaconda3\envs\Assignment2\Library\share\proj"
 #import modules
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,6 +17,8 @@ import descartes
 import glob
 import rasterio
 from rasterio.plot import show
+from rasterio.crs import CRS
+
 
 #Read sampling points table and convert to pandas dataframe
 df = pd.read_csv("Data\Sampling_Points_coor.csv")
@@ -35,8 +41,19 @@ define encoding method'''
 #Load habitat map polygon shapefile
 Habitat_map = gpd.read_file("Data\Ards_Map.shp")
 print(Habitat_map)
-Habitat_map.plot(column="Habitat", cmap='Pastel2', legend=True);
-#plt.show()
+Points = gpd.read_file("Data\Sampling_Points.shp")
+print(Points)
+Habitat_map = Habitat_map.to_crs(32630)
 
 #Read raster chart file
-#chart = rasterio.open("Data\1121.tif")
+chart = rasterio.open("Data\Ards.tif")
+
+
+#Plot all layers together
+fig, ax = plt.subplots()
+base = show(chart, ax=ax)
+Habitat_map.plot(ax=ax, column="Habitat", cmap='Pastel2', legend=True);
+Points.plot(ax=ax, color="red", legend=True);
+plt.show()
+
+
