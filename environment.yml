@@ -2,3 +2,22 @@ name: Assignment2
 channels:
   - defaults
 prefix: C:\Users\Annika\anaconda3\envs\Assignment2\envs\Assignment2
+packages: 
+import os
+
+os.environ['PROJ_LIB'] = r"C:\Users\Annika\anaconda3\envs\Assignment2\Library\share\proj"
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import shapely
+import shapely.geometry
+from shapely.geometry import Point
+import gdal
+import fiona
+import pyproj
+import geopandas as gpd
+import descartes
+import glob
+import rasterio
+from rasterio.plot import show
+from rasterio.crs import CRS
