@@ -11,8 +11,6 @@ import os
 
 os.environ['PROJ_LIB'] = r"C:\Users\Annika\anaconda3\envs\Assignment2\Library\share\proj"
 
-#import modules
-
 import numpy as np
 
 import matplotlib.pyplot as plt
